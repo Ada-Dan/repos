@@ -15,6 +15,7 @@ import {
  import { format } from "date-fns";
  import { useNavigate } from "react-router-dom";
  import { SearchContext } from "../../context/SearchContext";
+import { AuthContext } from "../../context/AuthContext";
 
  
  const Header = ({ type }) => {
@@ -35,6 +36,8 @@ import {
    });
  
    const navigate = useNavigate();
+   const { user } = useContext(AuthContext);
+
  
    const handleOption = (name, operation) => {
      setOptions((prev) => {
@@ -91,7 +94,7 @@ import {
              <p className="headerDesc">
                Search low prices on hotels, homes and much more...
              </p>
-             <button className="headerBtn">Sign in / Register</button>
+             {! user && <button className="headerBtn">Sign in / Register</button>}
              <div className="headerSearch">
                <div className="headerSearchItem">
                  <FontAwesomeIcon icon={faBed} className="headerIcon" />
