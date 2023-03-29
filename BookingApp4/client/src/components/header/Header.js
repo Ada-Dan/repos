@@ -56,7 +56,7 @@ import { AuthContext } from "../../context/AuthContext";
      navigate("/hotels", { state: { destination, dates, options } });
    };
    
-
+  
    return (
      <div className="header">
        <div

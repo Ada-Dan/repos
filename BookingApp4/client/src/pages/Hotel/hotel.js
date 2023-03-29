@@ -12,8 +12,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useState, useContext } from "react";
 import useFetch from "../../hooks/useFetch";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { SearchContext } from "../../context/SearchContext";
+import { AuthContext } from "../../context/AuthContext";
+import Reserve from "../../components/reserve/Reserve";
 
 
 const Hotel = () => {
@@ -21,9 +23,11 @@ const Hotel = () => {
   const id = location.pathname.split("/")[2];
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
+  const [openModel, setOpenModel] = useState(false);
 
   const { data, loading } = useFetch(`/hotels/find/${id}`);
-  
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const { dates, options } = useContext(SearchContext);
 
   // Calculates total number of days booked.
@@ -51,6 +55,15 @@ const Hotel = () => {
     }
 
     setSlideNumber(newSlideNumber)
+  };
+
+  const handleClick = () => {
+    if (user){
+      setOpenModel(true);
+
+    }else{
+      navigate("/login");
+    }
   };
 
   return (
@@ -82,7 +95,7 @@ const Hotel = () => {
           </div>
         )}
         <div className="hotelWrapper">
-          <button className="bookNow">Reserve or Book Now!</button>
+          <button onClick={handleClick} className="bookNow">Reserve or Book Now!</button>
           <h1 className="hotelTitle">{data.name}</h1>
           <div className="hotelAddress">
             <FontAwesomeIcon icon={faLocationDot} />
@@ -130,6 +143,7 @@ const Hotel = () => {
         <MailList />
         <Footer />
       </div>)}
+      {openModel && <Reserve setOpen={setOpenModel} hotelId={id}/>}
     </div>
   );
 };
