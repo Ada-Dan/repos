@@ -107,15 +107,17 @@ export const countByType = async (req, res, next) => {
     }
 };
 
+//Somethings off with the mapping here and the id. 114 error.
 export const getHotelRooms = async (req, res, next) => {
     try {
-        const hotel = Hotel.findById(req.params.id)
-        const list = await Promise.all(hotel.rooms.map(room=>{
-            return Room.findById(room);
+      const hotel = await Hotel.findById(req.params._id);
+      const list = await Promise.all(
+        hotel.rooms.map((room) => {
+          return Room.findById(room);
         })
-        );
-        res.status(200).json(list)
+      );
+      res.status(200).json(list)
     } catch (err) {
-        next(err)
-    };
+      next(err);
+    }
 };
