@@ -1,5 +1,5 @@
 import express from "express"
-import { createRoom, deleteRoom, getRoom, getRooms, updateRoom } from "../controllers/roomController.js";
+import { createRoom, deleteRoom, getRoom, getRooms, updateRoom, updateRoomAvailability } from "../controllers/roomController.js";
 import { verifyAdmin } from "../utils/verifyToken.js"
 // CRUD routes for rooms.
 
@@ -10,8 +10,9 @@ router.post("/:hotelid", verifyAdmin, createRoom);
 
 //UPDATE
 router.put("/:id", verifyAdmin, updateRoom);
+router.put("/availability/:id", updateRoomAvailability);
 
-//DELETE
+ //DELETE
 router.delete("/:id/:hotelid", verifyAdmin, deleteRoom);
 
 //GET

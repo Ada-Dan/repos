@@ -31,7 +31,7 @@ const Reserve = ({ setOpen, hotelId }) => {
 
   const alldates = getDatesInRange(dates[0].startDate, dates[0].endDate);
 
-  // Checks if rooms are available.
+  // Checks if rooms are available between starting and end date.
   const isAvailable = (roomNumber) => {
     const isFound = roomNumber.unavailableDates.some((date) =>
       alldates.includes(new Date(date).getTime())
@@ -51,7 +51,8 @@ const Reserve = ({ setOpen, hotelId }) => {
   };
 
   const navigate = useNavigate();
-
+  /* If the user selects room/rooms to reserve the following function updates 
+  the rooms selected in the database from available to unavailable */ 
   const handleClick = async () => {
     try {
       await Promise.all(
@@ -62,6 +63,10 @@ const Reserve = ({ setOpen, hotelId }) => {
           return res.data;
         })
       );
+
+      /* This ends the user path for selecting rooms and booking them.
+      At this point a payment path may be added. 
+      In this project, the user is navigated back to the homepage. */
       setOpen(false);
       navigate("/");
     } catch (err) {}
