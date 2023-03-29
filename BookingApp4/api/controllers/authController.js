@@ -12,16 +12,16 @@ export const register = async (req, res, next) => {
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(req.body.password, salt)
         const newUser = new User ({
-            username:req.body.username, 
-            email:req.body.email,
+            ...req.body,
             password:hash,
-        })
-        await newUser.save()
-        res.status(201).send("User registration complete")
+        });
+
+        await newUser.save();
+        res.status(201).send("User registration complete");
     } catch (err) {
-        next(err)
+        next(err);
     }
-}
+};
 
 export const login = async (req, res, next) => {
     try {
