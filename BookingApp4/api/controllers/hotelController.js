@@ -110,7 +110,7 @@ export const countByType = async (req, res, next) => {
     }
 };
 
-//Somethings off with the mapping here and the id. 114 error.
+//comment
 export const getHotelRooms = async (req, res, next) => {
     try {
       const hotel = await Hotel.findById(req.params.id);
