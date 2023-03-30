@@ -1,3 +1,5 @@
+/* This component displays a search interface for hotels. */
+
 import "./list.css";
 import Navbar from "../../components/navbar/Navbar";
 import Header from "../../components/header/Header";
@@ -17,17 +19,19 @@ const List = () => {
   const [min, setMin] = useState(undefined);
   const [max, setMax] = useState(undefined);
 
-
+// Gets the current URL location, and sets state variables for destination, dates, options, min, and max.
   const { data, loading, reFetch } = useFetch(
     `/hotels?city=${destination}&min=${min || 0 }&max=${max || 999}`
-  );
-// adjust above so equal to is present. 
-  
-
+  ); 
+  // Fetch data from an API endpoint based on the user's search criteria.
   const handleClick = () => {
     reFetch();
   };
 
+  /* Renders a search interface with inputs for destination, check-in dates, 
+  and various options such as price range, number of adults and children, and number of rooms. 
+  When the "Search" button is clicked, it triggers a re-fetch of the hotel data based on the user's inputs. 
+  The component then displays the hotel search results as a list of items using the SearchItem component. */
   return (
     <div>
       <Navbar />

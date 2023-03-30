@@ -1,3 +1,10 @@
+/* This variable contains an initial state with user, loading, and error attributes,
+as well as an AuthReducer function that handles state updates based on various action types.
+It also exports an AuthContextProvider function that creates a context provider with 
+the AuthReducer and initial state. The provider wraps children components and provides them with user, 
+loading, error, and dispatch attributes that correspond to the AuthContext state and reducer. 
+The provider also saves the current user to localStorage using useEffect. */
+
 import { createContext, useEffect, useReducer } from "react";
 
 
@@ -6,12 +13,6 @@ const INITIAL_STATE = {
     loading: false,
     error: null,
 };
-
-// const INITIAL_STATE = {
-//   user: null,
-//   loading: false,
-//   error: null,
-// };
 
 export const AuthContext = createContext(INITIAL_STATE);
 

@@ -1,3 +1,6 @@
+/* Composes a home page for a website that displays different types of properties 
+and a list of featured properties. */
+
 import Navbar from "../../components/navbar/Navbar.js";
 import Header from "../../components/header/Header.js";
 import Featured from "../../components/featured/Featured.js";

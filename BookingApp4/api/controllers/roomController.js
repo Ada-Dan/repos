@@ -1,13 +1,14 @@
 import Room from "../models/Room.js"
 import Hotel from "../models/Hotel.js"
 
-import { createError } from "../utils/error.js"
-
+/* Adds a new room to the database. Receives a hotel ID as a parameter and 
+creates a new room object with the provided room details. */
 export const createRoom = async (req, res, next) => {
 
     const hotelId = req.params.hotelid;
     const newRoom = new Room(req.body)
-
+/* Saves the new room to the database and updates the hotel with the new room
+by adding the room ID to the hotel's rooms array using Mongoose's "$push */
 try {
     const savedRoom = await newRoom.save()
     try {
@@ -16,6 +17,7 @@ try {
     } catch (err) {
     next(err) 
     }
+    // Returns a JSON response with the saved room details.
     res.status(200).json(savedRoom);
 } catch (err) {
     next(err)
@@ -41,6 +43,9 @@ export const updateRoom = async (req,res,next) => {
     }
 };
 
+/* Updates the availability status of a room in the database. 
+Receives a room number ID as a parameter and updates the corresponding room's 
+"unavailableDates" array with the provided dates. */
 export const updateRoomAvailability = async (req, res, next) => {
     try {
       await Room.updateOne(

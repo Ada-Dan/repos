@@ -1,3 +1,7 @@
+/* This component fetches data about featured hotels (4 max) using the useFetch hook. 
+If the data is still loading, a loading message is displayed. 
+Otherwise, the data is mapped to div elements displaying the hotel name, city, image, starting price, and (if available) rating. */
+
 import useFetch from "../../hooks/useFetch";
 import "./featuredProperties.css";
 

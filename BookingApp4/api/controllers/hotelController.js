@@ -87,6 +87,9 @@ export const countByCity = async (req,res,next) => {
     }
 };
 
+/* Uses Mongoose to count the number of documents in a "Hotel" collection with a specific type. 
+The function counts the number of hotels, apartments, resorts, villas, and cabins separately, 
+and returns a JSON response with the type of the property and the count of each property type. */
 export const countByType = async (req, res, next) => {
     try {
       const hotelCount = await Hotel.countDocuments({ type: "hotel" });
@@ -110,7 +113,7 @@ export const countByType = async (req, res, next) => {
 //Somethings off with the mapping here and the id. 114 error.
 export const getHotelRooms = async (req, res, next) => {
     try {
-      const hotel = await Hotel.findById(req.params._id);
+      const hotel = await Hotel.findById(req.params.id);
       const list = await Promise.all(
         hotel.rooms.map((room) => {
           return Room.findById(room);

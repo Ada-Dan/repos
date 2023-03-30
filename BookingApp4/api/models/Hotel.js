@@ -48,6 +48,10 @@ const HotelSchema = new mongoose.Schema({
         type: Boolean, 
         required: false
     },
+    highlights:{
+        type: String, 
+        required: true
+    },
 });
 
 export default mongoose.model("Hotel", HotelSchema)

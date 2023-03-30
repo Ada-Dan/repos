@@ -1,3 +1,4 @@
+// Defines the routes for the web application.
 import {
   BrowserRouter,
   Routes,

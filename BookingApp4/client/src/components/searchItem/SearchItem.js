@@ -1,3 +1,8 @@
+/* This component displays information about a hotel search result.
+It takes an object item as a prop, which contains hotel properties. 
+The component renders a card with the hotel's properties, as well as a button to view availability. 
+If the item object has a rating property, the component also displays the rating. */
+
 import { Link } from "react-router-dom";
 import "./searchItem.css";
 

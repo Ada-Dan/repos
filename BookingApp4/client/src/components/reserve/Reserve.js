@@ -1,3 +1,9 @@
+/* This component is used to reserve rooms in a hotel. 
+The component uses state to keep track of the selected rooms 
+and fetches room data from the backend using useFetch hook.
+It also uses the SearchContext to get the selected 
+dates and calculates the dates in between those dates. */
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 

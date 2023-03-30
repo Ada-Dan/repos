@@ -6,6 +6,11 @@
     gap: 20px;
     z-index: 1;
 }
+
+.featured h2{
+    color: rgb(206, 79, 37);
+    font-weight: 700;
+}
   
 .featuredItem{
     position: relative;

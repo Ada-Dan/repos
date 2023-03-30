@@ -1,3 +1,5 @@
+// This component fetches data for a specific hotel using its id parameter from the URL.
+
 import "./hotel.css";
 import Navbar from "../../components/navbar/Navbar";
 import Header from "../../components/header/Header";
@@ -30,7 +32,7 @@ const Hotel = () => {
   const navigate = useNavigate();
   const { dates, options } = useContext(SearchContext);
 
-  // Calculates total number of days booked.
+  // The component calculates the number of days for which the hotel is being booked.
   const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
   function dayDifference(date1, date2) {
     const timeDiff = Math.abs(date2.getTime() - date1.getTime());
@@ -39,7 +41,8 @@ const Hotel = () => {
   }
   const days = dayDifference(dates[0].endDate, dates[0].startDate);
 
-  
+  /* It also handles the opening and closing of a slider that displays 
+  the hotel's photos, and it allows the user to move between the photos. */
   const handleOpen = (i) => {
     setSlideNumber(i);
     setOpen(true);
@@ -57,6 +60,8 @@ const Hotel = () => {
     setSlideNumber(newSlideNumber)
   };
 
+  /* When clicked, triggers a modal to reserve or book the hotel. 
+ If the user is not logged in, they are directed to the login page */
   const handleClick = () => {
     if (user){
       setOpenModel(true);
@@ -65,7 +70,7 @@ const Hotel = () => {
       navigate("/login");
     }
   };
-
+  // The component renders a navbar, header, hotel details, a mail list, and a footer.
   return (
     <div>
       <Navbar />
@@ -129,14 +134,13 @@ const Hotel = () => {
             <div className="hotelDetailsPrice">
               <h1>Perfect for a {days}-night stay!</h1>
               <span>
-                Located in the real heart of Krakow, this property has an
-                excellent location score of 9.8!
+                {data.highlights}
               </span>
               <h2>
               <b>${days * data.cheapestPrice * options.room}</b> ({days}{" "}
                   nights)             
               </h2>
-              <button>Reserve or Book Now!</button>
+              <button onClick={handleClick}>Reserve or Book Now!</button>
             </div>
           </div>
         </div>

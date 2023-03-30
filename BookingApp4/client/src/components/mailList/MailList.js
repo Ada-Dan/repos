@@ -1,3 +1,7 @@
+/* This component returns some JSX elements representing a form for users to sign up for email newsletters. 
+The form includes an email input field and a subscribe button. It may be used for users to sign up to an email client.
+it is non functional in this project. */
+
 import "./mailList.css"
 
 const MailList = () => {
@@ -8,6 +12,7 @@ const MailList = () => {
       <div className="mailInputContainer">
         <input type="text" placeholder="Your Email" />
         <button>Subscribe</button>
+        
       </div>
     </div>
   )

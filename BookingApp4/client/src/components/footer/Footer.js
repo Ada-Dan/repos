@@ -1,3 +1,6 @@
+
+/*This component creates the footer section of the website. The links are just examples in this project. */
+
 import "./footer.css";
 
 const Footer = () => {
@@ -55,7 +58,7 @@ const Footer = () => {
           <li className="fListItem">Corporate contact</li>
         </ul>
       </div>
-      <div className="fText">Copyright © 2022 WEBSITE NAME ADD LATER. All rights reserved.</div>
+      <div className="fText">Copyright © 2022 NOMADIA. All rights reserved.</div>
     </div>
   );
 };

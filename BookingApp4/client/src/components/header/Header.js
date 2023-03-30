@@ -1,10 +1,13 @@
+/* This component creates several states using the useState hook to manage user input 
+related to searching for hotels. The component also imports various font awesome icons 
+and uses the DateRange component from a third-party library to display a date range selector. 
+The handleSearch function is called when the user clicks the "Search" button, 
+which triggers a NEW_SEARCH action with the destination, dates, and options as parameters. */
+
 import {
    faBed,
    faCalendarDays,
-   faCar,
    faPerson,
-   faPlane,
-   faTaxi,
  } from "@fortawesome/free-solid-svg-icons";
  import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
  import "./header.css";
@@ -65,26 +68,7 @@ import { AuthContext } from "../../context/AuthContext";
          }
        >
          <div className="headerList">
-           <div className="headerListItem active">
-             <FontAwesomeIcon icon={faBed} />
-             <span>Stays</span>
-           </div>
-           <div className="headerListItem">
-             <FontAwesomeIcon icon={faPlane} />
-             <span>Flights</span>
-           </div>
-           <div className="headerListItem">
-             <FontAwesomeIcon icon={faCar} />
-             <span>Car rentals</span>
-           </div>
-           <div className="headerListItem">
-             <FontAwesomeIcon icon={faBed} />
-             <span>Attractions</span>
-           </div>
-           <div className="headerListItem">
-             <FontAwesomeIcon icon={faTaxi} />
-             <span>Airport taxis</span>
-           </div>
+          
          </div>
          {type !== "list" && (
            <>

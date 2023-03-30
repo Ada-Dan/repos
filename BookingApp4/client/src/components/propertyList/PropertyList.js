@@ -1,3 +1,10 @@
+/* This component is responsible for rendering a list of properties with their respective counts.
+It uses the useFetch hook to retrieve data from the /hotels/countByType endpoint, 
+and an array of images to display alongside the property type and count. 
+While the data is being fetched, the component displays the "loading" message. 
+Once the data is available, it maps over the array of images to render a pListItem for each one, 
+displaying the corresponding property type and count. */
+
 import useFetch from "../../hooks/useFetch";
 import "./propertyList.css";
 
@@ -5,11 +12,11 @@ const PropertyList = () => {
   const { data, loading, error } = useFetch("/hotels/countByType");
 
   const images = [
-    "https://cf.bstatic.com/xdata/images/xphoto/square300/57584488.webp?k=bf724e4e9b9b75480bbe7fc675460a089ba6414fe4693b83ea3fdd8e938832a6&o=",
-    "https://cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-apartments_300/9f60235dc09a3ac3f0a93adbc901c61ecd1ce72e.jpg",
-    "https://cf.bstatic.com/static/img/theme-index/carousel_320x240/bg_resorts/6f87c6143fbd51a0bb5d15ca3b9cf84211ab0884.jpg",
-    "https://cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-villas_300/dd0d7f8202676306a661aa4f0cf1ffab31286211.jpg",
-    "https://cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-chalet_300/8ee014fcc493cb3334e25893a1dee8c6d36ed0ba.jpg",
+    "https://static.dezeen.com/uploads/2019/03/shinola-hotel-gachot-studios-interiors-detroit-michigan-usa_dezeen_2364_sq-411x411.jpg",
+    "http://cdn.home-designing.com/wp-content/uploads/2012/10/Purple-modular-sofa.jpeg",
+    "https://www.americanexpress.com/en-us/travel/discover/photos/20765/14979/1200/hacienda_two090-updated.jpg",
+    "https://img.freepik.com/premium-photo/villa-tuscany-with-cypress-road-blue-sky-idyllic-seasonal-nature-landscape-vintage-hipster-background_548832-5930.jpg",
+    "https://koruarchitects.co.uk/wp-content/uploads/2022/03/final-3-8.jpg",
   ];
   return (
     <div className="pList">
