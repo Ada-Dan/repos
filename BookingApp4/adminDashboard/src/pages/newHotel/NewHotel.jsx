@@ -6,16 +6,27 @@ import { useState } from "react";
 import { hotelInputs } from "../../formSource";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 
 const NewHotel = () => {
   const [files, setFiles] = useState("");
   const [info, setInfo] = useState({});
   const [rooms, setRooms] = useState([]);
+  const navigate = useNavigate()
+
 
   const { data, loading, error } = useFetch("/rooms");
 
   const handleChange = (e) => {
-    setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+
+    if (e.target.id === "cheapestPrice") {
+      const cheapestPrice = parseFloat(e.target.value); // convert to float
+      setInfo((prev) => ({ ...prev, cheapestPrice })); // update state
+    } else {
+      setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+    }
+
   };
 
   const handleSelect = (e) => {
@@ -26,35 +37,46 @@ const NewHotel = () => {
     setRooms(value);
   };
   
-  console.log(files)
-
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      const list = await Promise.all(
-        Object.values(files).map(async (file) => {
-          const data = new FormData();
-          data.append("file", file);
-          data.append("upload_preset", "upload");
-          const uploadRes = await axios.post(
-            "https://api.cloudinary.com/v1_1/duq61sgxt/image/upload",
-            data
-          );
-
-          const { url } = uploadRes.data;
-          return url;
-        })
-      );
+      let list = [];
+      if (files) {
+        list = await Promise.all(
+          Object.values(files).map(async (file) => {
+            const data = new FormData();
+            data.append("file", file);
+            data.append("upload_preset", "upload");
+            const uploadRes = await axios.post(
+              "https://api.cloudinary.com/v1_1/duq61sgxt/image/upload",
+              data
+            );
+            const { url } = uploadRes.data;
+            return url;
+          })
+        );
+      }
 
       const newhotel = {
         ...info,
         rooms,
         photos: list,
       };
+      console.log(newhotel)
+
 
       await axios.post("/hotels", newhotel);
-    } catch (err) {console.log(err)}
+      navigate("/hotels");
+    } catch (err) {
+      console.log(err);
+    }
+    
+    navigate("/hotels")
+
+
   };
+  
+
   return (
     <div className="new">
       <Sidebar />

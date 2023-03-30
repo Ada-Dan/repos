@@ -11,7 +11,7 @@ const Datatable = ({columns}) => {
   const location = useLocation();
   const path = location.pathname.split("/")[1];
   
-  const [list, setList] = useState();
+  const [list, setList] = useState([]);
   // const [data, setData] = useState(userRows);
   const {data, loading, error} = useFetch(`/${path}`);
   //issue
@@ -53,21 +53,16 @@ const Datatable = ({columns}) => {
   ];
   return (
     <div className="datatable">
-{/* <div className="datatableTitle">
-{path}
-<Link to={`/${path}/new`} className="link">
-Add New
-</Link>
-</div> */}
+
       <div className="datatableTitle">
         Add New User
-        <Link to="/users/new" className="link">
+        <Link to={`/${path}/new`} className="link">
           Add New
         </Link> 
       </div>
       <DataGrid
         className="datagrid"
-        rows={data}
+        rows={list}
         columns={columns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}

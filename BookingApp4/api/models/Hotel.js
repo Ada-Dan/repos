@@ -50,7 +50,7 @@ const HotelSchema = new mongoose.Schema({
     },
     highlights:{
         type: String, 
-        required: true
+        required: false
     },
 });
 
