@@ -6,9 +6,22 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
+import { useNavigate } from 'react-router-dom';
+
+
+
 
 const Sidebar = () => {
+  const navigate = useNavigate();
   const { dispatch } = useContext(DarkModeContext);
+
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+    localStorage.removeItem("user");
+    navigate("/login")
+}
+
+
   return (
     <div className="sidebar">
       <div className="top">
@@ -40,7 +53,7 @@ const Sidebar = () => {
           </Link>
           <li>
             <ExitToAppIcon className="icon" />
-            <span>Logout</span>
+            <span onClick={handleLogout} >Logout</span>
           </li>
         </ul>
       </div>
